@@ -17,7 +17,7 @@ public class HeartSoundViewer extends Application {
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setAutoRanging(true); // Otomatik y ekseni
+        yAxis.setAutoRanging(true);
 
         LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
         chart.setTitle("Phonocardiogram Signal");
