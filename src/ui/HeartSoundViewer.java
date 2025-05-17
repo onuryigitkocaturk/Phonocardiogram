@@ -13,7 +13,7 @@ public class HeartSoundViewer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        double[] samples = WavReader.readWav("Christians_Heart.wav");
+        double[] samples = WavReader.readWav("dong3_HeartORG.wav");
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
