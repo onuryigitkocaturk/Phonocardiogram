@@ -17,15 +17,12 @@ public class HeartSoundViewer extends Application {
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setAutoRanging(false);
-        yAxis.setLowerBound(-0.15);
-        yAxis.setUpperBound(0.15);
+        yAxis.setAutoRanging(true); // Otomatik y ekseni
 
         LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
         chart.setTitle("Phonocardiogram Signal");
         chart.setCreateSymbols(false);
         chart.setLegendVisible(false);
-
 
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.setName("");
