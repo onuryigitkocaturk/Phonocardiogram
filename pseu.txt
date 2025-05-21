@@ -1,0 +1,79 @@
+Initialize LiveMicReader with a function that will receive each audio sample
+
+Start method:
+    Define audio format: 44100Hz, 16-bit, mono, signed, little-endian
+    Open microphone line
+    Start capturing audio
+
+    While the system is running:
+        Read audio bytes into buffer
+        For each 2 bytes in the buffer:
+            Convert byte pair to 16-bit PCM sample
+            Normalize sample to [-1.0, 1.0] range
+            Send sample to the sampleConsumer function
+
+Stop method:
+    Stop and close the microphone
+
+
+
+Method: countPeaks(data, threshold)
+    Initialize peak count to 0
+    Set last detected peak index very negative
+    Define minimum distance between peaks
+
+    For each sample in data:
+        If the sample is greater than the threshold,
+        and it's greater than the samples before and after,
+        and it's far enough from the last detected peak:
+            Count it as a peak
+            Update last peak index
+
+    Return total number of peaks
+
+
+
+
+Method: calculateBPM(peakCount, durationInSeconds)
+    Return (peakCount / durationInSeconds) * 60
+
+
+
+
+Method: readWav(filePath)
+    Open audio input stream from file
+    Define a target format: PCM_SIGNED, 16-bit, mono
+
+    Convert original stream to target format
+    Read all bytes from stream
+
+    For each 2 bytes:
+        Convert to 16-bit sample
+        Normalize to double in [-1.0, 1.0]
+        Store in samples array
+
+    Return the double[] array of samples
+
+Start method:
+    Create label with text "Hello JavaFX!"
+    Create a scene of size 400x200 with this label
+    Set scene on stage and show it
+
+
+
+
+Main method:
+    Launch JavaFX application
+1. Real-time audio data is captured using LiveMicReader
+   → Each incoming audio sample is passed to a consumer function
+     (e.g., for processing or visualization)
+
+2. Alternatively, audio samples can be loaded from a .wav file using WavReader
+   → The file is decoded and converted into a normalized double[] array
+
+3. The captured or loaded audio data is analyzed using PeakDetector
+   → countPeaks() detects the number of peaks above a threshold
+   → calculateBPM() converts the peak count into Beats Per Minute (BPM)
+
+4. (Optional) A graphical interface is provided using JavaFX
+   → The interface can visualize audio waveform or display computed BPM
